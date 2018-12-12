@@ -25,7 +25,7 @@ class Battle < Sinatra::Base
     }
   end 
 
-  post '/attack' do
+  get '/attack' do
      erb :attack, locals: {
       player_1: session[:player_1],
       player_2: session[:player_2]
