@@ -3,10 +3,7 @@ feature "viewing hitpoints" do
    
     context "after submitting names and landing on play page" do
         before {
-            visit('/')
-            fill_in :player_1, with: 'Pikachu'
-            fill_in :player_2, with: 'Charizard'
-            click_button 'Fight!'
+            sign_in_and_play
         }
         let(:start_hp) { 100 }
 
