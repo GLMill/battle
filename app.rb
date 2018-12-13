@@ -29,7 +29,8 @@ class Battle < Sinatra::Base
     @game = $game
     @game.attack
     @game.turn
-     erb :attack
+    erb :attack
+
   end
 
   # start the server if ruby file executed directly
