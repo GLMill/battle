@@ -5,4 +5,4 @@ feature "attack confirmations" do
       expect(page).to have_content('Pikachu attacked Charizard')
     end
   end
-  
+   
