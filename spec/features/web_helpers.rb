@@ -4,3 +4,4 @@ def sign_in_and_play
     fill_in :player_2, with: 'Charizard'
     click_button 'Fight!'
 end
+

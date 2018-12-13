@@ -4,7 +4,7 @@ require_relative 'lib/player'
 class Battle < Sinatra::Base
   
   enable  :sessions
-  START_HP = 100
+ 
 
   get '/' do
     erb :index
@@ -13,7 +13,6 @@ class Battle < Sinatra::Base
   post '/names' do
     $player_1 = Player.new(params[:player_1])
     $player_2 = Player.new(params[:player_2])
-    session[:start_hp] =  START_HP
     redirect '/play'
   
   end
@@ -22,14 +21,19 @@ class Battle < Sinatra::Base
     erb :play, locals: {
       player_1: $player_1.name,
       player_2: $player_2.name,
-      start_hp: session[:start_hp]
+      player_1_hp: $player_1.hitpoints,
+      player_2_hp: $player_2.hitpoints
     }
   end 
 
   get '/attack' do
+     $player_2.hitpoints -= 10
+     p $player_2.hitpoints
      erb :attack, locals: {
       player_1: $player_1.name,
-      player_2: $player_2.name
+      player_2: $player_2.name,
+      player_1_hp: $player_1.hitpoints,
+      player_2_hp: $player_2.hitpoints
   }
   end
 
