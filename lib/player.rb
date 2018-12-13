@@ -1,11 +1,15 @@
 class Player
-    attr_reader :name
-    attr_accessor :hitpoints
+    attr_reader :name, :hp
 
-    START_HITPOINTS = 100
+    START_HP = 100
 
     def initialize(name)
         @name = name
-        @hitpoints = START_HITPOINTS
+        @hp = START_HP
     end
+
+    def update_health(int)
+        @hp -= int
+    end
+
 end

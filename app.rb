@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative 'lib/player'
+require_relative 'lib/game'
 
 class Battle < Sinatra::Base
   
@@ -11,30 +12,23 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $player_1 = Player.new(params[:player_1])
-    $player_2 = Player.new(params[:player_2])
+    player_1 = Player.new(params[:player_1])
+    player_2 = Player.new(params[:player_2])
+    $game = Game.new(player_1, player_2)
+
     redirect '/play'
   
   end
 
   get '/play' do 
-    erb :play, locals: {
-      player_1: $player_1.name,
-      player_2: $player_2.name,
-      player_1_hp: $player_1.hitpoints,
-      player_2_hp: $player_2.hitpoints
-    }
+    @game = $game
+    erb :play 
   end 
 
   get '/attack' do
-     $player_2.hitpoints -= 10
-     p $player_2.hitpoints
-     erb :attack, locals: {
-      player_1: $player_1.name,
-      player_2: $player_2.name,
-      player_1_hp: $player_1.hitpoints,
-      player_2_hp: $player_2.hitpoints
-  }
+    @game = $game
+    @game.attack(@game.player_2) 
+     erb :attack
   end
 
   # start the server if ruby file executed directly
