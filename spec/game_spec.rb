@@ -34,4 +34,12 @@ describe Game do
     end 
   end
 
+  describe '#game_over?' do 
+   it' should check @opponent.dead if true set @over to true' do 
+    expect(opponent).to receive(:dead)
+    game.game_over
+   end
+  end
+
+ 
 end

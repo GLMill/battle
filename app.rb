@@ -30,6 +30,7 @@ class Battle < Sinatra::Base
     @game.attack
     @game.turn
     erb :attack
+  
 
   end
 
