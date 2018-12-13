@@ -4,6 +4,7 @@ describe Game do
     
     let(:player_1){ double (:player)}
     let(:player_2){ double (:player)}
+    let(:opponent){ player_2}
     let(:game){ Game.new(player_1, player_2)}
     let(:attack_damage) { 10 }
 
@@ -15,16 +16,22 @@ describe Game do
     end
 
   context 'on #intialize' do 
-    it 'should respond to #attack with one param' do 
-      expect(game).to respond_to(:attack).with(1)
+    it 'should respond to #attack ' do 
+      expect(game).to respond_to(:attack)
     end
   end
 
   context ' player #attack another player' do 
       it 'should remove ten lifepoints from a player' do
-         expect(player_1).to receive(:update_health).with(attack_damage)
-         game.attack(player_1)
+         expect(opponent).to receive(:update_health).with(attack_damage)
+         game.attack
       end
+  end
+
+  describe '#turn' do 
+    it 'swaps turns setting @opponet to equal @turn and @turn to equla @opponent' do 
+      expect{ game.turn }.to change{ game.opponent }.to(player_1)
+    end 
   end
 
 end
