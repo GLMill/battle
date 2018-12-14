@@ -11,6 +11,7 @@ class Game
 
     def attack
         @opponent.update_health(10)
+        game_over
   
     end
 
@@ -18,7 +19,6 @@ class Game
         temp = @turn
         @turn = @opponent
         @opponent = temp
-        game_over
     end
 
     def game_over

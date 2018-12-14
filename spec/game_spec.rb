@@ -2,8 +2,8 @@ require 'game'
 
 describe Game do 
     
-    let(:player_1){ double (:player)}
-    let(:player_2){ double (:player)}
+    let(:player_1){ double('player',:dead => true)}
+    let(:player_2){ double('player',:dead => true )}
     let(:opponent){ player_2}
     let(:game){ Game.new(player_1, player_2)}
     let(:attack_damage) { 10 }
@@ -29,17 +29,17 @@ describe Game do
   end
 
   describe '#turn' do 
+    
     it 'swaps turns setting @opponet to equal @turn and @turn to equla @opponent' do 
       expect{ game.turn }.to change{ game.opponent }.to(player_1)
     end 
   end
 
-  describe '#game_over?' do 
-   it' should check @opponent.dead if true set @over to true' do 
-    expect(opponent).to receive(:dead)
-    game.game_over
+  describe '#game_over' do 
+   it' checking that @opponent.game_over calls opponent.dead' do 
+     expect(opponent).to receive(:dead)
+     game.game_over
    end
   end
 
- 
 end

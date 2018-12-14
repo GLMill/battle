@@ -5,3 +5,9 @@ def sign_in_and_play
     click_button 'Fight!'
 end
 
+def attack_player_till_final_blow
+    18.times{
+    click_link 'Attack'
+    click_link 'playon'
+    }
+end

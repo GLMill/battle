@@ -15,7 +15,9 @@ class Player
     end
 
     def check_health
-        @dead = true
+        if @hp <= 0 
+            @dead = true
+        end
     end
 
 end

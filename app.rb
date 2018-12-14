@@ -28,9 +28,13 @@ class Battle < Sinatra::Base
   get '/attack' do
     @game = $game
     @game.attack
-    @game.turn
-    erb :attack
-  
+    if @game.over
+      erb :over
+    else
+      @game.turn
+      erb :attack
+    end
+    
 
   end
 
